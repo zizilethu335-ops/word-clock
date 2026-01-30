@@ -25,6 +25,11 @@ body {
   -webkit-backdrop-filter: blur(14px);
   border-radius: 20px;
   padding: 30px;
+   min-height: 100vh;
+  background: linear-gradient(180deg, #87ceeb, #e0f6ff);
+  padding: 40px 20px;
+
+  transition: background 2.5s ease-in-out;
 }
 
 .city {
@@ -97,3 +102,63 @@ footer {
   font-size: 0.9rem;
   color: #333;
 }
+body.day {
+  background: linear-gradient(180deg, #87ceeb, #e0f6ff);
+}
+
+body.night {
+  background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,0.08) 0%,
+      transparent 60%);
+  animation: rotateGlow 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.day-night-icon {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  font-size: 2rem;
+}
+
+.sun,
+.moon {
+  position: absolute;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+body.day .sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+body.day .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+body.night .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+body.night .moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
